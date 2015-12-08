@@ -15,9 +15,9 @@ def main():
 	for gift in f:
 		sides = gift.split('x')
 
-		length = float(sides[0])
-		width  = float(sides[1])
-		height = float(sides[2])
+		length = int(sides[0])
+		width  = int(sides[1])
+		height = int(sides[2])
 
 		wrapping += get_wrapping(length, width, height)
 		ribbons += get_ribbons(length, width, height)
