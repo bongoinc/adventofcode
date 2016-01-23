@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import argparse
 
 parser = argparse.ArgumentParser(description='AdventOfCode task 1')
