@@ -22,6 +22,7 @@ def main():
 		bc.move_blocks(int(''.join(cmd[1:])))
 
 	print("PART1: Easter Bunnys HQ is %d blocks away!" % bc.get_blocks())
+	print("PART2: Easter Bunnys HQ is actually %d blocks away!" % bc.get_closest_blocks())
 
 if __name__ == '__main__':
     main()
