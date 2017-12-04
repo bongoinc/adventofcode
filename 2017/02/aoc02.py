@@ -16,7 +16,7 @@ def main():
 
   for row in f:
     rowlist = map(int, row.split(" "))
-    checksum1 += (int(max(rowlist)) - int(min(rowlist)))
+    checksum1 += (max(rowlist) - min(rowlist))
     checksum2 += get_checksum_from_list(rowlist)
 
   print("PART1: The first checksum is %d!" % checksum1)
