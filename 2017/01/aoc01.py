@@ -13,24 +13,26 @@ def main():
 
   f = open(args.input, 'r')
   data = f.read()
-
   nums = list(data)
 
-  length = len(nums)
-
-#  print("LENGTH: %d" % length)
-
-  for pos in range(0, length):
-    if pos == length-1:
-      captcha = calc_captcha(captcha, int(nums[pos]), int(nums[0]))
+  for i, val in enumerate(nums):
+#    print("i = %d, item = %d" % (i, int(val)))
+    if i == len(nums)-1:
+      captcha = calc_captcha(captcha, nums[i], nums[0])
     else:
-      captcha = calc_captcha(captcha, int(nums[pos]), int(nums[pos + 1]))
+      captcha = calc_captcha(captcha, nums[i], nums[i + 1])
+
+#  for pos in range(0, length):
+#    if pos == length-1:
+#      captcha = calc_captcha(captcha, int(nums[pos]), int(nums[0]))
+#    else:
+#      captcha = calc_captcha(captcha, int(nums[pos]), int(nums[pos + 1]))
 
   print("PART1: The solution of the captcha is %d!" % captcha)
 
 def calc_captcha(summary, val1, val2):
   if val1 == val2:
-      return summary + val1
+      return summary + int(val1)
 
   return summary
 
