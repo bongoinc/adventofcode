@@ -30,7 +30,9 @@ def main():
     except ValueError:
       patterns.append(mem.state())
 
+
   print("PART1: It takes %d redistribution cycles before a pattern is reproduced!" % cycles)
+  print("PART2: It takes %d cycles between the first occurence and the second!" % (cycles-first_occurence))
 
 if __name__ == '__main__':
     main()
