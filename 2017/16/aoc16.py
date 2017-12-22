@@ -18,7 +18,7 @@ CMD_EXCHANGE = 'x'
 CMD_PARTNER = 'p'
 
 # Creating register
-register = ()
+register = ''
 
 def main():
   print("--- ADVENT OF CODE 2017 DAY 16 ---")
@@ -27,7 +27,8 @@ def main():
   cmds = f.read().rstrip().split(',')
   run_once = False
 
-  register = list(create_register(min(16, int(args.regs))))
+#  register = list(create_register(min(16, int(args.regs))))
+  register = create_register(min(16, int(args.regs)))
   print register
 
 #  for i in range(1000000000):
@@ -36,10 +37,10 @@ def main():
       spin(int(cmd[1:]))
     else:
       c = cmd[1:].split('/')
-      if cmd[0] == CMD_EXCHANGE:
-        exchange(int(c[0]), int(c[1]))
-      elif cmd[0] == CMD_PARTNER:
-        partner(c[0], c[1])
+#      if cmd[0] == CMD_EXCHANGE:
+#        exchange(int(c[0]), int(c[1]))
+#      elif cmd[0] == CMD_PARTNER:
+#        partner(c[0], c[1])
     print register
 
 #    if run_once == False:
@@ -57,8 +58,12 @@ def create_register(chars):
   return ascii_lowercase[:chars]
 
 def spin(n):
-#  global register
-  register = register[-n:] + register[:-n]
+  global register
+  print n
+  print register[-n:]
+  print register[:-n]
+#  register = register[-n:] + register[:-n]
+  register = '{0}{1}'.format(register[-n:], register[:-n])
 
 def exchange(p1, p2):
   global register
