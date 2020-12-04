@@ -7,6 +7,11 @@ parser = argparse.ArgumentParser(description='AdventOfCode 2020 task 4')
 parser.add_argument('-i', '--input', help='Indata file, default data.txt', default='data.txt')
 args = parser.parse_args()
 
+REGEXP_HEIGHT = r"^(\d+)(cm|in)$"
+REGEXP_PID = r'^[0-9]{9}$'
+REGEXP_COLOR = r'^#[0-9a-f]{6}$'
+VALID_COLORS = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
+
 def main():
     print('--- ADVENT OF CODE 2020 DAY 4 ---')
     passports = []
@@ -31,9 +36,9 @@ def main():
                 check_int_value(ps['iyr'], 2010, 2020) and \
                 check_int_value(ps['eyr'], 2020, 2030) and \
                 check_height(ps['hgt']) and \
-                re.search(r'^#[0-9a-f]{6}$', ps['hcl']) and \
-                ps['ecl'] in ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'] and \
-                re.search(r'^[0-9]{9}$', ps['pid']):
+                re.search(REGEXP_COLOR, ps['hcl']) and \
+                ps['ecl'] in VALID_COLORS and \
+                re.search(REGEXP_PID, ps['pid']):
                 second_answer += 1
 
     print('PART1: The number of valid passports is %d!' % first_answer)
@@ -49,10 +54,14 @@ def check_int_value(val, l, u):
     return False
 
 def check_height(val):
-    if val.endswith('cm'):
-        return check_int_value(val[:-2], 150, 193)
-    elif val.endswith('in'):
-        return check_int_value(val[:-2], 59, 76)
+    m = re.findall(REGEXP_HEIGHT, val)
+    if not m:
+        return False
+    v, u = m[0]
+    if u == 'cm':
+        return check_int_value(v, 150, 193)
+    elif u == 'in':
+        return check_int_value(v, 59, 76)
     return False
 
 def parse_info(info):
