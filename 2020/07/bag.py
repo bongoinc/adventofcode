@@ -6,6 +6,9 @@ class Bag:
     def get_color(self):
         return self.__color
 
+    def get_contained_bags(self):
+        return self.__can_contain
+
     def has_shiny_gold_bag(self):
         for b in self.__can_contain:
             if 'shiny gold' in b:

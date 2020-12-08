@@ -34,8 +34,27 @@ def count_bags_that_might_contain_shiny_gold(all_bags):
     for b in all_bags:
         if b.has_shiny_gold_bag():
             cnt += 1
-#        elif b.contain_other_bags():
+        elif b.contain_other_bags():
+            if check_sub_bags(b.get_contained_bags(), all_bags):
+                cnt += 1
     return cnt
+
+def check_sub_bags(bs, all_bags):
+    for b in bs:
+        bag = get_bag(list(b.keys())[0], all_bags)
+        if bag.has_shiny_gold_bag():
+            return True
+        elif bag.contain_other_bags():
+            if check_sub_bags(bag.get_contained_bags(), all_bags):
+                return True
+
+    return False
+
+def get_bag(color, all_bags):
+    for bg in all_bags:
+        if bg.get_color() == color:
+            return bg
+    return None
 
 def decode_rule(rule):
     idx = rule.index(BAGS_CONTAINED)
