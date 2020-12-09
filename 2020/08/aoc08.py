@@ -13,8 +13,7 @@ def main():
 
     f = open(args.input, 'r')
     for row in f:
-        o = Operand()
-        o.decode(row.strip())
+        o = Operand(row.strip())
         operands.append(o)
 
 #    print(operands)

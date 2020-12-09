@@ -2,9 +2,10 @@ import re
 
 class Operand:
     REGEX_OPERAND = r"^(nop|acc|jmp) (\+|-)([0-9]{1,3})$"
-    def __init__(self):
+    def __init__(self, str):
         self.__action = ""
         self.__steps = 0
+        self.decode(str)
 
     def get_action(self):
       return self.__action
