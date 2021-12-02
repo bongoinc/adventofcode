@@ -36,7 +36,26 @@ def part_one(actions):
   return pos * depth
 
 def part_two(actions):
-  return 0
+  pos = 0
+  depth = 0
+  aim = 0
+  
+#  print(actions)
+#  print("P: %d, D: %d, A: %d" % (pos, depth, aim))
+  
+  for a in actions:
+#    print(a)
+    if a.get_do() == "forward":
+      pos = pos + a.get_steps()
+      depth = depth + (aim * a.get_steps())
+    elif a.get_do() == "down":
+      aim = aim + a.get_steps()
+    elif a.get_do() == "up":
+      aim = aim - a.get_steps()
+#    print("P: %d, D: %d, A: %d" % (pos, depth, aim))
+
+  return pos * depth
+
 
 if __name__ == '__main__':
     main()
