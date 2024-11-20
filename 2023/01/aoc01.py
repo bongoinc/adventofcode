@@ -11,7 +11,7 @@ def main():
   indata = get_indata(args.input)
 
   print("PART1: The answer is %d." % part_one(indata))
-  # print("PART2: The answer is %d." % part_two(all_calories))
+  print("PART2: The answer is %d." % part_two(indata))
 
 def get_indata(filename):
   indata = []
@@ -37,9 +37,20 @@ def part_one(data):
     total = total + get_value_from_string(d)
   return total
 
-# def part_two(data):
-#   data.sort(reverse=True)
-#   return sum(data[0:3])
+def replace_all(text_list, replacements):
+  for text in text_list:
+    for old, new in replacements.items():
+      text = text.replace(old, new)
+
+  return text_list
+
+def part_two(data):
+   total = 0
+   digit_mappings = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5",
+                     "six": "6", "seven": "7", "eight": "8", "nine": "9"}
+   mod_data = replace_all(data, digit_mappings)
+
+   return part_one(mod_data)
 
 
 if __name__ == '__main__':
